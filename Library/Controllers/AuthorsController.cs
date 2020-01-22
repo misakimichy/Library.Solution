@@ -8,17 +8,17 @@ using Library.Models;
 
 namespace Library.Controllers
 {
-    public class BooksController : Controller
+    public class AuthorsController : Controller
     {
         private readonly LibraryContext _db;
-        public BooksController(LibraryContext db)
+        public AuthorsController(LibraryContext db)
         {
             _db = db;
         }
 
         public ActionResult Index()
         {
-            return View(_db.Books.ToList());
+            return View(_db.Authors.ToList());
         }
 
         public ActionResult Create()
@@ -27,9 +27,9 @@ namespace Library.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Book book)
+        public ActionResult Create(Author author)
         {
-            _db.Books.Add(book);
+            _db.Authors.Add(author);
             _db.SaveChanges();
             return RedirectToAction("Index");
         }

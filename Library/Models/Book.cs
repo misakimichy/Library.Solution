@@ -10,7 +10,6 @@ namespace Library.Models
     }
     public int BookId { get; set; }
     public string Title { get; set; }
-    public string Category { get; set; }
     public virtual ICollection<AuthorBook> Authors { get; set; }
   }
 }

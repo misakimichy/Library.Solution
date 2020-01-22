@@ -1,0 +1,18 @@
+@{
+    Layout = "_Layout";
+}
+
+@model Library.Models.Book
+
+<h1>Add a New Book</h1>
+
+@using (Html.BeginForm())
+{
+    <span>Title:</span>
+    @Html.TextBoxFor(model => model.Title)<br><br>
+    
+    <input type="submit" value="Add a Book" class="btn btn-info">
+}
+
+@Html.ActionLink("Back to the Book List", "Index", "Books") <br>
+@Html.ActionLink("Go Home", "Index", "Home")

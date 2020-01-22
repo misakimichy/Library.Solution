@@ -1,3 +1,7 @@
+@{
+    Layout = "_Layout";
+}
+
 @using Library.Models;
 
 @if(Model.Count == 0)
@@ -11,4 +15,5 @@
 }
 
 
-@Html.ActionLink("Add a new book", "Create")
+@Html.ActionLink("Add a new book", "Create") <br>
+@Html.ActionLink("Go Home", "Index", "Home")
