@@ -51,8 +51,6 @@ namespace Library.Migrations
                     b.Property<int>("BookId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Category");
-
                     b.Property<string>("Title");
 
                     b.HasKey("BookId");

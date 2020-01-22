@@ -33,5 +33,17 @@ namespace Library.Controllers
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+        public ActionResult Edit(Book book, int AuthorId)
+        {
+            if (AuthorId != 0)
+            {
+                _db.AuthorBooks.Add(new AuthorBook() { AuthorId = AuthorId, BookId = book.BookId});
+            }
+            _db.Entry(book).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }

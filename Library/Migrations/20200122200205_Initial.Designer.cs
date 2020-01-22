@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Library.Migrations
 {
     [DbContext(typeof(LibraryContext))]
-    [Migration("20200122183416_Initial")]
+    [Migration("20200122200205_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -52,8 +52,6 @@ namespace Library.Migrations
                 {
                     b.Property<int>("BookId")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Category");
 
                     b.Property<string>("Title");
 

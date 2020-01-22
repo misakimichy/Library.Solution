@@ -4,9 +4,10 @@
 
 @using Library.Models;
 
+<h1>List of Authors</h1>
 @if(Model.Count == 0)
 {
-    <h1>There are no authors in the list.</h1>
+    <h5>There are no authors in the list.</h5>
 }
 
 @foreach (Author author in Model)
