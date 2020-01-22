@@ -40,5 +40,19 @@ namespace Library.Controllers
                 .FirstOrDefault(author => author.AuthorId == id);
             return View(thisAuthor);
         }
+
+        public ActionResult Edit(int id)
+        {
+            var thisAuthor = _db.Authors.FirstOrDefault(author => author.AuthorId == id );
+            return View(thisAuthor);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Author author)
+        {
+            _db.Entry(author).State = EntityState.Modified;
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }
