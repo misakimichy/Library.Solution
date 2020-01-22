@@ -38,18 +38,6 @@ namespace Library.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpPost]
-        public ActionResult Edit(Book book, int AuthorId)
-        {
-            if (AuthorId != 0)
-            {
-                _db.AuthorBooks.Add(new AuthorBook() { AuthorId = AuthorId, BookId = book.BookId});
-            }
-            _db.Entry(book).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-            _db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
         public ActionResult Details(int id)
         {
             var thisBook = _db.Books
@@ -58,5 +46,26 @@ namespace Library.Controllers
                 .FirstOrDefault(book => book.BookId == id);
             return View(thisBook);
         }
+
+        public ActionResult Edit(int id)
+        {
+            var thisBook = _db.Books.FirstOrDefault(books => books.BookId == id);
+            ViewBag.AuthorId = new SelectList(_db.Authors, "AuthorId", "Name");
+            return View(thisBook);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Book book, int AuthorId)
+        {
+            if (AuthorId != 0)
+            {
+                _db.AuthorBooks.Add(new AuthorBook() { AuthorId = AuthorId, BookId = book.BookId});
+            }
+            _db.Entry(book).State = EntityState.Modified;
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+
     }
 }

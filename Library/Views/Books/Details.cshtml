@@ -11,17 +11,19 @@
 
 @if(@Model.Authors.Count == 0)
 {
-    <p>This Book doens't contain any authors.</p>
+    <p>This book doens't contain any authors.</p>
 }
 else
 {
     <ul>
         @foreach(var join in Model.Authors)
         {
-            <li>@join.Book.Title</li>
+            <li>@join.Author.Name</li>
         }
     </ul>
 }
 
-<p>@Html.ActionLink("Back to the Book List", "Index", "Books")</p>
+<p>@Html.ActionLink("Back to the Book List", "Index")</p>
+<p>@Html.ActionLink("Edit this book", "Edit", new { id = Model.BookId})</p>
+<p>@Html.ActionLink("Add Author", "AddAuthor", new { id = Model.BookId})</p>
 <p>@Html.ActionLink("Go Home", "Index", "Home")</p>
