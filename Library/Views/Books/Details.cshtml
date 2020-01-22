@@ -1,0 +1,27 @@
+@{
+    Layout = "_Layout";
+}
+
+@model Library.Models.Book
+
+<h1>Book Details</h1>
+<hr />
+
+<h3>@Html.DisplayNameFor(model => model.Title): @Html.DisplayFor(model => model.Title)</h3>
+
+@if(@Model.Authors.Count == 0)
+{
+    <p>This Book doens't contain any authors.</p>
+}
+else
+{
+    <ul>
+        @foreach(var join in Model.Authors)
+        {
+            <li>@join.Book.Title</li>
+        }
+    </ul>
+}
+
+<p>@Html.ActionLink("Back to the Book List", "Index", "Books")</p>
+<p>@Html.ActionLink("Go Home", "Index", "Home")</p>

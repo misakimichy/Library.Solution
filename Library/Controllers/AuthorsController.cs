@@ -1,9 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
 using Library.Models;
 
 namespace Library.Controllers
@@ -33,14 +31,14 @@ namespace Library.Controllers
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
-        
-        // public ActionResult Details(int id)
-        // {
-        //     var thisAuthor = _db.Authors
-        //         .Include(author => author.Books)
-        //         .ThenInclude(join => join.Book)
-        //         .FirstOrDefault(author => author.AuthorId == id);
-        //     return View(thisAuthor);
-        // }
+
+        public ActionResult Details(int id)
+        {
+            var thisAuthor = _db.Authors
+                .Include(author => author.Books)
+                .ThenInclude(join => join.Book)
+                .FirstOrDefault(author => author.AuthorId == id);
+            return View(thisAuthor);
+        }
     }
 }

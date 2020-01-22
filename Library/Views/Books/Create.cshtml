@@ -10,6 +10,9 @@
 {
     <span>Title:</span>
     @Html.TextBoxFor(model => model.Title)<br><br>
+
+    @Html.Label("Select a Author: ")
+    @Html.DropDownList("AuthorId")
     
     <input type="submit" value="Add a Book" class="btn btn-info">
 }
