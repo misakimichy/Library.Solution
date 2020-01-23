@@ -9,13 +9,12 @@
 <div class="info-container">
 @using (Html.BeginForm())
 {
-
     @Html.HiddenFor(model => model.CopyId)
 
-    @Html.Label("Select book")
+    @Html.Label("Select book: ")
     @Html.DropDownList("BookId")
 
-    <input type="submit" value="Add new book copy" class="btn btn-info" />
+    <input type="submit" value="Add a book copy" class="btn btn-info" />
 }
 </div>
 

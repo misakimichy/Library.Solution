@@ -82,7 +82,7 @@ namespace Library.Migrations
                     b.Property<int>("PatronId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("Name");
+                    b.Property<string>("Name");
 
                     b.HasKey("PatronId");
 
