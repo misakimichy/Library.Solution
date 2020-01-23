@@ -1,23 +1,34 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
+using System.Security.Claims;
 using System.Collections.Generic;
 using System.Linq;
 using Library.Models;
 
 namespace Library.Controllers
 {
+    [Authorize]
     public class BooksController : Controller
     {
         private readonly LibraryContext _db;
-        public BooksController(LibraryContext db)
+        private readonly UserManager<ApplicationUser> _userManager;
+
+        public BooksController(LibraryContext db, UserManager<ApplicationUser> userManager)
         {
             _db = db;
+            _userManager = userManager;
         }
 
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            return View(_db.Books.ToList());
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var currentUser = await _userManager.FindByIdAsync(userId);
+            var userItems = _db.Books.Where(entry => entry.User.Id == currentUser.Id);
+            return View(userItems);
         }
 
         public ActionResult Create()
@@ -27,8 +38,11 @@ namespace Library.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Book book, int authorId)
+        public async Task<ActionResult> Create(Book book, int authorId)
         {
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var currentUser = await _userManager.FindByIdAsync(userId);
+            book.User = currentUser;
             _db.Books.Add(book);
             if(authorId != 0)
             {
