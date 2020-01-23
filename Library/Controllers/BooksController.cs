@@ -91,7 +91,8 @@ namespace Library.Controllers
         [HttpPost]
         public ActionResult AddAuthor(Book book, int AuthorId)
         {
-            if(AuthorId != 0)
+            AuthorBook join = _db.AuthorBooks.FirstOrDefault(authorBook => authorBook.AuthorId == AuthorId && authorBook.BookId == book.BookId);
+            if(AuthorId != 0 && join == null)
             {
                 _db.AuthorBooks.Add(new AuthorBook(){ AuthorId = AuthorId, BookId = book.BookId});
             }
