@@ -7,6 +7,10 @@
     <link rel="stylesheet" href="~/css/styles.css">
   </head>
   <body>
+    <div class="account-container">
+      <p>@Html.ActionLink("Login Account", "Login", "Account")</p>
+      <p>@Html.ActionLink("Createt a Account", "Register", "Account")</p>
+    </div>
     <div class="container">
       @RenderBody()
     </div>
