@@ -5,8 +5,8 @@
 @model Library.Models.Author
 
 <h1>Author Details</h1>
-<hr />
 
+<div class="info-container">
 <h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h3>
 
 @if(@Model.Books.Count == 0)
@@ -23,6 +23,7 @@ else
         }
     </ul>
 }
+</div>
 
 <p>@Html.ActionLink("Back to the Author List", "Index")</p>
 <p>@Html.ActionLink("Edit this author", "Edit", new { id = Model.AuthorId})</p>

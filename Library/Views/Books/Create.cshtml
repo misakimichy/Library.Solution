@@ -6,6 +6,7 @@
 
 <h1>Add a New Book</h1>
 
+<div class="info-container">
 @using (Html.BeginForm())
 {
     <span>Title:</span>
@@ -16,6 +17,7 @@
     
     <input type="submit" value="Add a Book" class="btn btn-info">
 }
+</div>
 
 <p>@Html.ActionLink("Back to the Book List", "Index")</p>
 <p>@Html.ActionLink("Go Home", "Index", "Home")</p>

@@ -21,11 +21,11 @@ h1, h2, h3, h4, h5, p, ul > li {
     margin: 30px auto 0 auto;
 }
 
-ul {
+ul, li {
     list-style: none;
 }
 
-.form-container, .info-container
+.info-container
 {
     max-width: 50%;
     border: 1px solid #6c757d;
@@ -33,13 +33,6 @@ ul {
     padding: 30px;
     margin: 0 auto 30px auto;
 }
-
-.form-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 
 footer {
     display:flex;

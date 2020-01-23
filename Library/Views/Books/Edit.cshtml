@@ -6,6 +6,7 @@
 
 <h1>Edit</h1>
 
+<div class="info-container">
 @using (Html.BeginForm())
 {
     @Html.HiddenFor(model => model.BookId)
@@ -17,6 +18,7 @@
     
     <input type="submit" value="Save" class="btn btn-info">
 }
+</div>
 
 <p>@Html.ActionLink("Back to the Book List", "Index")</p>
 <p>@Html.ActionLink("Go Home", "Index", "Home")</p>

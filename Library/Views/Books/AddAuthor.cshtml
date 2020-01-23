@@ -4,9 +4,10 @@
 
 @model Library.Models.Book
 
-<h2>Add a Author</h2>
+<h1>Add a Author</h1>
 
-<h4>Add a Author to this list: @Html.DisplayFor(model => model.Title)</h4>
+<div class="info-container">
+<h5>Add a Author to this list: @Html.DisplayFor(model => model.Title)</h5>
 
 @using (Html.BeginForm())
 {
@@ -17,5 +18,6 @@
 
     <input type="submit" value="Save" />
 }
+</div>
 
 <p>@Html.ActionLink("Back to list", "Index")</p>

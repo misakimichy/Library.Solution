@@ -6,6 +6,7 @@
 
 <h1>Add a New Author</h1>
 
+<div class="info-container">
 @using (Html.BeginForm())
 {
     <span>Name:</span>
@@ -13,6 +14,7 @@
     
     <input type="submit" value="Add a Author" class="btn btn-info">
 }
+</div>
 
 <p>@Html.ActionLink("Back to the Author List", "Index")</p>
 <p>@Html.ActionLink("Go Home", "Index", "Home")</p>
