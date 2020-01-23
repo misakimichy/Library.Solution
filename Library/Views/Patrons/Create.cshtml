@@ -1,0 +1,20 @@
+@{
+    Layout = "_Layout";
+}
+
+@model Library.Models.Author
+
+<h1>Add a New Patron</h1>
+
+<div class="info-container">
+@using (Html.BeginForm())
+{
+    <span>Name:</span>
+    @Html.TextBoxFor(model => model.Name)<br><br>
+    
+    <input type="submit" value="Add" class="btn btn-info">
+}
+</div>
+
+<p>@Html.ActionLink("Back to Patron List", "Index")</p>
+<p>@Html.ActionLink("Go Home", "Index", "Home")</p>

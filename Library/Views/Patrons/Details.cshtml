@@ -1,0 +1,31 @@
+@{
+    Layout = "_Layout";
+}
+
+@model Library.Models.Patron
+
+<h1>Patron Details</h1>
+
+<div class="info-container">
+<h5>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h5>
+
+@if(@Model.Copies.Count == 0)
+{
+    <p>This book doens't contain any copies.</p>
+}
+else
+{
+    <ul>
+        @foreach(var join in Model.Copies)
+        {
+            <li>@join.Copy.CopyId</li>
+        }
+    </ul>
+}
+</div>
+
+<p>@Html.ActionLink("Back to Patron List", "Index")</p>
+<p>@Html.ActionLink("Edit Patron", "Edit", new { id = Model.PatronId})</p>
+<p>@Html.ActionLink("Add Copy", "AddCopy", new { id = Model.PatronId})</p>
+<p>@Html.ActionLink("Delete This Patron", "Delete", new { id = Model.PatronId})</p>
+<p>@Html.ActionLink("Go Home", "Index", "Home")</p>
