@@ -7,16 +7,16 @@
 <h1>Add a Author</h1>
 
 <div class="info-container">
-<h5>Add a Author to this list: @Html.DisplayFor(model => model.Title)</h5>
+<h5>@Html.DisplayFor(model => model.Title)</h5>
 
 @using (Html.BeginForm())
 {
     @Html.HiddenFor(model => model.BookId)
 
-    @Html.Label("Select author")
+    @Html.Label("Choose an author: ")
     @Html.DropDownList("AuthorId")
 
-    <input type="submit" value="Save" />
+    <input type="submit" value="Save" class="btn btn-info"/>
 }
 </div>
 

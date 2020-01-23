@@ -80,5 +80,23 @@ namespace Library.Controllers
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        public ActionResult AddAuthor(int id)
+        {
+            var thisBook = _db.Books.FirstOrDefault(books => books.BookId == id);
+            ViewBag.AuthorId = new SelectList(_db.Authors, "AuthorId", "Name");
+            return View(thisBook);
+        }
+
+        [HttpPost]
+        public ActionResult AddAuthor(Book book, int AuthorId)
+        {
+            if(AuthorId != 0)
+            {
+                _db.AuthorBooks.Add(new AuthorBook(){ AuthorId = AuthorId, BookId = book.BookId});
+            }
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }
