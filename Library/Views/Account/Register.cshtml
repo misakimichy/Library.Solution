@@ -5,18 +5,18 @@
 @using Library.ViewModels
 @model RegisterViewModel
 
-<h1>Register a new user</h1>
+<h1>Register a New User</h1>
 <hr />
 <div class="info-container">
 @using (Html.BeginForm("Register", "Account", FormMethod.Post))
 {
-    @Html.LabelFor(user => user.Email)
+    @Html.Label("Email:")
     @Html.TextBoxFor(user=> user.Email)<br>
 
-    @Html.LabelFor(user=> user.Password)
+    @Html.Label("Password:")
     @Html.PasswordFor(user=> user.Password)<br>
 
-    @Html.LabelFor(user=> user.ConfirmPassword)
+    @Html.Label("Confirm Password:")
     @Html.PasswordFor(user=> user.ConfirmPassword)<br>
 
     <input type="submit" value="Register" class="btn btn-info"/>

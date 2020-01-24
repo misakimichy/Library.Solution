@@ -25,17 +25,24 @@ ul, li {
     list-style: none;
 }
 
+.container {
+    margin-top: 20px;
+}
+
 .account-container
 {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    background-color: #eee;
     padding: 15px;
 }
 
-.account-container > p {
+.account-container > p, .account-container > input {
     margin: 0 30px 0 0 ;
+}
+
+.account-container > p > a {
+    padding: 20px;
 }
 
 .main-header {
