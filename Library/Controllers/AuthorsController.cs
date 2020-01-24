@@ -1,22 +1,34 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
+using System.Security.Claims;
 using System.Collections.Generic;
 using System.Linq;
 using Library.Models;
 
 namespace Library.Controllers
 {
+    [Authorize]
     public class AuthorsController : Controller
     {
         private readonly LibraryContext _db;
-        public AuthorsController(LibraryContext db)
+        private readonly UserManager<ApplicationUser> _userManager;
+
+        public AuthorsController(LibraryContext db, UserManager<ApplicationUser> userManager)
         {
             _db = db;
+            _userManager = userManager;
         }
 
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            return View(_db.Authors.ToList());
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var currentUser = await _userManager.FindByIdAsync(userId);
+            var userItems = _db.Authors.Where(entry => entry.User.Id == currentUser.Id);
+            return View(userItems);
         }
 
         public ActionResult Create()
@@ -25,8 +37,11 @@ namespace Library.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Author author)
+        public async Task<ActionResult> Create(Author author)
         {
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var currentUser = await _userManager.FindByIdAsync(userId);
+            author.User = currentUser;
             _db.Authors.Add(author);
             _db.SaveChanges();
             return RedirectToAction("Index");
