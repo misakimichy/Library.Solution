@@ -77,7 +77,7 @@ namespace Library.Controllers
         }
 
         [HttpPost, ActionName("Delete")]
-        public ActionResult DeleteCOnfirmed(int id)
+        public ActionResult DeleteConfirmed(int id)
         {
             var thisAuthor = _db.Authors.FirstOrDefault(author => author.AuthorId == id);
             _db.Authors.Remove(thisAuthor);
